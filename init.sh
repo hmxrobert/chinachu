@@ -1,6 +1,6 @@
 #!/bin/sh
 
-/chinachu/chinachu service operator execute &
-/chinachu/chinachu service wui execute &
+sh /etc/init.d/chinachu-operator &
+sh /etc/init.d/chinachu-wui &
 
 tail -f /dev/null

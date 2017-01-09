@@ -1,1 +1,1 @@
-"# chinachu" 
+Dockerfile for chinachu without Mirakurun.

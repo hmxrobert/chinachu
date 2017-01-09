@@ -18,6 +18,7 @@ RUN make install
 RUN useradd chinachu
 
 USER chinachu
+WORKDIR /home/chinachu/
 
 RUN git clone git://github.com/kanreisa/Chinachu.git /home/chinachu/chinachu
 

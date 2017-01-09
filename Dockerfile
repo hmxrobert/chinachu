@@ -19,7 +19,7 @@ RUN useradd chinachu
 
 USER chinachu
 
-RUN git clone git://github.com/kanreisa/Chinachu.git /home/chinachu
+RUN git clone git://github.com/kanreisa/Chinachu.git /home/chinachu/chinachu
 
 WORKDIR /home/chinachu/chinachu/
 

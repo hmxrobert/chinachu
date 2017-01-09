@@ -15,24 +15,33 @@ RUN /root/src/yasm-1.3.0/configure
 RUN make
 RUN make install
 
-RUN git clone git://github.com/kanreisa/Chinachu.git /chinachu
+RUN useradd chinachu
 
-WORKDIR /chinachu
+USER chinachu
 
-RUN echo 1 | /chinachu/chinachu installer
+RUN git clone git://github.com/kanreisa/Chinachu.git /home/chinachu
+
+WORKDIR /home/chinachu/chinachu/
+
+RUN echo 1 | /home/chinachu/chinachu/chinachu installer
 
 VOLUME ["/mnt/chinachu"]
 
-RUN ln -s /mnt/chinachu/config.json /chinachu/config.json
-RUN ln -s /mnt/chinachu/rules.json /chinachu/rules.json
+RUN ln -s /mnt/chinachu/config.json /home/chinachu/chinachu/chinachu/config.json
+RUN ln -s /mnt/chinachu/rules.json /home/chinachu/chinachu/chinachu/rules.json
 
 RUN mkdir /mnt/chinachu/recorded
 RUN mkdir /mnt/chinachu/data
 RUN mkdir /mnt/chinachu/log
 
-RUN ln -s /mnt/chinachu/recorded /chinachu/recorded
-RUN ln -s /mnt/chinachu/data /chinachu/data
-RUN ln -s /mnt/chinachu/log /chinachu/log
+RUN ln -s /mnt/chinachu/recorded /home/chinachu/chinachu/chinachu/recorded
+RUN ln -s /mnt/chinachu/data /home/chinachu/chinachu/chinachu/data
+RUN ln -s /mnt/chinachu/log /home/chinachu/chinachu/chinachu/log
+
+USER root
+RUN sh /home/chinachu/chinachu/chinachu service operator initscript | /etc/init.d/chinachu-operator
+RUN sh /home/chinachu/chinachu/chinachu service wui initscript | /etc/init.d/chinachu-wui
+RUN chmod +x /etc/init.d/chinachu-*
 
 ADD init.sh /
 RUN chmod +x /init.sh

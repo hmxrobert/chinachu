@@ -28,10 +28,6 @@ VOLUME ["/mnt/chinachu"]
 RUN ln -s /mnt/chinachu/config.json /chinachu/config.json
 RUN ln -s /mnt/chinachu/rules.json /chinachu/rules.json
 
-RUN mkdir /mnt/chinachu/recorded
-RUN mkdir /mnt/chinachu/data
-RUN mkdir /mnt/chinachu/log
-
 RUN ln -s /mnt/chinachu/recorded /chinachu/recorded
 RUN ln -s /mnt/chinachu/data /chinachu/data
 RUN ln -s /mnt/chinachu/log /chinachu/log

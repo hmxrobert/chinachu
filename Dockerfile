@@ -1,19 +1,9 @@
-FROM centos:latest
+FROM alpine:3.5
 MAINTAINER hmxrobert
 
-RUN yum -y update
-RUN yum -y install epel-release
-RUN yum -y install nodejs npm --enablerepo=epel
-RUN yum -y install  net-tools wget git unzip bzip2 gcc gcc-c++ make autogen automake kernel-devel patch perl-ExtUtils-MakeMaker libtool openssl-devel libboost-all-dev boost-devel
-
-RUN mkdir -p ~/src
-WORKDIR  /root/src
-RUN wget http://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz
-RUN tar xvzf yasm-1.3.0.tar.gz 
-WORKDIR /root/src/yasm-1.3.0/
-RUN /root/src/yasm-1.3.0/configure
-RUN make
-RUN make install
+RUN apk upgrade --update
+RUN apk add bash nodejs coreutil curl procps ca-certificates
+RUN apk add --virtual .build-deps git make gcc g++ autoconf automake wget curl sudo tar xz libc-dev musl-dev eudev-dev libevent-dev
 
 RUN npm install rivarun -g
 

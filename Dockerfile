@@ -4,7 +4,7 @@ MAINTAINER hmxrobert
 RUN yum -y update
 RUN yum -y install epel-release
 RUN yum -y install nodejs npm --enablerepo=epel
-RUN yum -y install  net-tools wget git unzip bzip2 gcc gcc-c++ make autogen automake kernel-devel patch perl-ExtUtils-MakeMaker libtool openssl-devel libboost-all-dev boost-devel
+RUN yum -y install net-tools wget git unzip bzip2 gcc gcc-c++ make autogen automake kernel-devel patch perl-ExtUtils-MakeMaker libtool openssl-devel libboost-all-dev boost-devel
 
 RUN mkdir -p ~/src
 WORKDIR  /root/src
@@ -40,7 +40,6 @@ RUN chmod +x /etc/init.d/chinachu-*
 ADD init.sh /
 RUN chmod +x /init.sh
 
-EXPOSE 10772
-EXPOSE 20772
+EXPOSE 10772 20772
 
 CMD ["/init.sh"]

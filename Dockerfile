@@ -15,6 +15,8 @@ RUN /root/src/yasm-1.3.0/configure
 RUN make
 RUN make install
 
+RUN npm install rivarun -g
+
 RUN git clone git://github.com/kanreisa/Chinachu.git /chinachu
 
 WORKDIR /chinachu
@@ -33,6 +35,11 @@ RUN mkdir /mnt/chinachu/log
 RUN ln -s /mnt/chinachu/recorded /chinachu/recorded
 RUN ln -s /mnt/chinachu/data /chinachu/data
 RUN ln -s /mnt/chinachu/log /chinachu/log
+
+RUN /chinachu/chinachu service operator initscript > /etc/init.d/chinachu-operator
+RUN /chinachu/chinachu service wui initscript > /etc/init.d/chinachu-wui
+
+RUN chmod +x /etc/init.d/chinachu-*
 
 ADD init.sh /
 RUN chmod +x /init.sh

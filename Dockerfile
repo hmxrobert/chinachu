@@ -17,7 +17,7 @@ RUN make install
 
 RUN npm install rivarun -g
 
-RUN git clone git://github.com/kanreisa/Chinachu.git /chinachu
+RUN git clone https://github.com/Chinachu/Chinachu /chinachu
 
 WORKDIR /chinachu
 

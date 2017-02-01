@@ -23,7 +23,6 @@ RUN ln -s /mnt/chinachu/rules.json /chinachu/rules.json
 
 RUN ln -s /mnt/chinachu/recorded /chinachu/recorded
 RUN ln -s /mnt/chinachu/data /chinachu/data
-RUN ln -s /mnt/chinachu/log /chinachu/log
 
 RUN /chinachu/chinachu service operator initscript > /etc/init.d/chinachu-operator
 RUN /chinachu/chinachu service wui initscript > /etc/init.d/chinachu-wui
